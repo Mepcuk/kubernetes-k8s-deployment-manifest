@@ -1,0 +1,20 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: eis-head-deploy
+  labels:
+    app: eis-head-application
+  spec:
+    selector:
+      matchLabels:
+        project: eis-head
+    template:
+      metadata:
+        labels:
+          project: eis-crawler
+      spec:
+        containers:
+          - name: eis-head-crawler
+            image: adv4000/k8sphp:latest
+            ports:
+              - containerPort : 80
